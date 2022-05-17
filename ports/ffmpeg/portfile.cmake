@@ -313,12 +313,6 @@ else()
     set(OPTIONS "${OPTIONS} --disable-libsrt")
 endif()
 
-if("librtmp" IN_LIST FEATURES)
-    set(OPTIONS "${OPTIONS} --enable-librtmp")
-else()
-    set(OPTIONS "${OPTIONS} --disable-librtmp")
-endif()
-
 if("mp3lame" IN_LIST FEATURES)
     set(OPTIONS "${OPTIONS} --enable-libmp3lame")
 else()

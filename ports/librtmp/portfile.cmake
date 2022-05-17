@@ -21,10 +21,18 @@ vcpkg_configure_cmake(
 
 vcpkg_install_cmake()
 
+configure_file("${CMAKE_CURRENT_LIST_DIR}/librtmp.pc.in" "${CURRENT_PACKAGES_DIR}/lib/pkgconfig/librtmp.pc" @ONLY)
+if(NOT VCPKG_BUILD_TYPE)
+    configure_file("${CMAKE_CURRENT_LIST_DIR}/librtmp.pc.in" "${CURRENT_PACKAGES_DIR}/debug/lib/pkgconfig/librtmp.pc" @ONLY)
+endif()
+
+vcpkg_fixup_pkgconfig()
+
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/include)
 
 # License and man
 file(INSTALL ${SOURCE_PATH}/librtmp/COPYING DESTINATION ${CURRENT_PACKAGES_DIR}/share/librtmp RENAME copyright)
 file(INSTALL ${SOURCE_PATH}/librtmp/librtmp.3.html DESTINATION ${CURRENT_PACKAGES_DIR}/share/librtmp)
+
 
 vcpkg_copy_pdbs()
